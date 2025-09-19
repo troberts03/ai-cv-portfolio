@@ -36,7 +36,7 @@ Close window with X or ESC.
 ## Run MOT Tracking
 Run multi-object tracking on a demo video:
 
-python mot_demo.py --video video_examples/mot_sample.mp4 --model yolov8n.pt
+`python mot_demo.py --video video_examples/mot_sample.mp4 --model yolov8n.pt`
 
 Tracks objects across frames and assigns IDs.
 
@@ -45,7 +45,7 @@ Saves annotated output as examples/mot_output.mp4.
 ## Convert COCO → YOLO
 Test conversion on included minimal COCO dataset:
 
-python coco_to_yolo.py --json coco_examples/annotations.json --out coco_examples/yolo_labels
+`python coco_to_yolo.py --json coco_examples/annotations.json --out coco_examples/yolo_labels`
 
 Outputs YOLO .txt labels for each image.
 
