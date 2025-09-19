@@ -1,0 +1,44 @@
+{
+  "info": {
+    "year": 2025,
+    "version": "1.0",
+    "description": "Minimal COCO dataset for demo"
+  },
+  "licenses": [],
+  "categories": [
+    {"id": 1, "name": "cat", "supercategory": "animal"},
+    {"id": 2, "name": "dog", "supercategory": "animal"}
+  ],
+  "images": [
+    {
+      "id": 1,
+      "file_name": "sample1.jpg",
+      "width": 640,
+      "height": 480
+    },
+    {
+      "id": 2,
+      "file_name": "sample2.jpg",
+      "width": 640,
+      "height": 480
+    }
+  ],
+  "annotations": [
+    {
+      "id": 1,
+      "image_id": 1,
+      "category_id": 1,
+      "bbox": [100, 150, 200, 200],  
+      "area": 40000,
+      "iscrowd": 0
+    },
+    {
+      "id": 2,
+      "image_id": 2,
+      "category_id": 2,
+      "bbox": [250, 100, 180, 220],
+      "area": 39600,
+      "iscrowd": 0
+    }
+  ]
+}

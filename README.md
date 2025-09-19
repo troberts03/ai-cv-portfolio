@@ -1,69 +1,68 @@
-# AI Computer Vision Portfolio Demos
+# AI Computer Vision Portfolio
 
-A compact set of **runnable** computer-vision demos suitable for portfolio work:
+This repository showcases core **Computer Vision skills** using YOLOv8, COCO datasets, and MOT tracking pipelines.  
+Includes end-to-end demos for object detection, tracking, and dataset conversion.  
 
-1. **YOLOv8 Video Inference** — quick object detection on images/video/webcam.
-2. **Simple Multi-Object Tracking (MOT)** — Hungarian assignment + IoU/centroid for ID persistence.
-3. **COCO → YOLO Converter** — convert COCO annotation JSON to YOLO format.
+## Features
+- **YOLOv8 Inference GUI**  
+  - Run object detection on images, video, or webcam.  
+  - Interactive Tkinter carousel to step through multiple images.  
 
-Tested with Python 3.10+ on macOS/Linux/Windows.
+- **Multi-Object Tracking (MOT)**  
+  - Combines YOLOv8 detections with Hungarian Assignment.  
+  - Tracks objects across frames in a demo video.  
+  - Saves annotated video output for review.  
 
----
+- **COCO to YOLO Converter**  
+  - Converts COCO-format annotations into YOLO `.txt` labels.  
+  - Includes **minimal COCO sample dataset** for testing.  
 
-## Environment
-
+## Installation
 ```bash
-python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
+git clone https://github.com/troberts03/ai-cv-portfolio.git
+cd ai-cv-portfolio
 pip install -r requirements.txt
 ```
 
----
+## Run YOLO Inference
+Run detection on sample images in a GUI with Prev/Next buttons:
 
-## 1) YOLOv8 Video Inference
+`python yolo_infer.py --source image_examples --model yolov8n.pt`
 
-Run YOLOv8 on a video, image folder, or webcam. The script will save annotated outputs to `runs/`.
+Press Next / Prev to navigate images.
 
-```bash
-python detection/yolo_infer.py --source path/to/video.mp4
-# or webcam
-python detection/yolo_infer.py --source 0
-# or an image folder
-python detection/yolo_infer.py --source path/to/images/
-```
+Close window with X or ESC.
 
-**Notes**
-- The first run downloads a pre-trained model. You can change the model via `--model` (e.g., `yolov8n.pt`, `yolov8s.pt`).
+## Run MOT Tracking
+Run multi-object tracking on a demo video:
 
----
+python mot_demo.py --video video_examples/mot_sample.mp4 --model yolov8n.pt
 
-## 2) Simple Multi-Object Tracking (MOT)
+Tracks objects across frames and assigns IDs.
 
-A minimal tracker that:
-- takes detector outputs (from YOLO) frame-by-frame,
-- matches detections to existing tracks with Hungarian assignment using a cost based on IoU and/or centroid distance,
-- maintains stable IDs across frames.
+Saves annotated output as examples/mot_output.mp4.
 
-Run directly on a video. The script will run YOLO for you and overlay track IDs:
+## Convert COCO → YOLO
+Test conversion on included minimal COCO dataset:
 
-```bash
-python tracking/mot_demo.py --source path/to/video.mp4 --model yolov8n.pt
-```
+python coco_to_yolo.py --json coco_examples/annotations.json --out coco_examples/yolo_labels
 
-You can also pipe your own detection JSON per frame using `--detections` for advanced use.
+Outputs YOLO .txt labels for each image.
 
----
+## Skills Demonstrated
+Object detection (YOLOv8)
 
-## 3) COCO → YOLO Converter
+Multi-object tracking (Hungarian Algorithm + CV pipeline integration)
 
-Convert a COCO annotation JSON to YOLO text files (one `.txt` per image).
+Dataset annotation handling (COCO → YOLO)
 
-```bash
-python tools/coco_to_yolo.py   --coco path/to/annotations.json   --images path/to/images_dir   --out path/to/yolo_labels_dir
-```
+GUI integration (Tkinter)
 
-**Assumptions**
-- COCO `images` entries contain `file_name`, `width`, and `height` (if width/height missing, the script can read image sizes if available).
+Video processing with OpenCV
 
----
+ML workflow documentation + reproducibility
 
-**License:** MIT
+## Notes
+Pretrained weights (yolov8n.pt) will be automatically downloaded by ultralytics.
+
+Replace sample images/videos with your own for custom testing.
