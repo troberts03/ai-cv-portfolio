@@ -1,1 +1,4 @@
-/runs/*
+*.pt
+
+coco_examples/yolo_labels/*
+
